@@ -23,6 +23,26 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    respond_to do |format|
+      if @post.update(post_params)
+        format.html { redirect_to @post, notice: 'Your post was updated.' }
+      else
+        format.html { render action: 'edit' }
+      end
+    end
+  end
+
   private
 
   def post_params
