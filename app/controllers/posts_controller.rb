@@ -12,12 +12,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Your post was created!' }
-      else
-        format.html { render action: 'new' }
-      end
+    if @post.save
+      redirect_to @post, notice: 'Your post was created!'
+    else
+      render action: 'new'
     end
   end
 
@@ -26,12 +24,10 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
-      respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Your post was updated.' }
-      else
-        format.html { render action: 'edit' }
-      end
+    if @post.update(post_params)
+      redirect_to @post, notice: 'Your post was updated.'
+    else
+      render action: 'edit'
     end
   end
 
